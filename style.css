@@ -124,10 +124,9 @@ body.dark #quote-box {
   font-style: italic;
   text-align: right;
   color: #000;
-  opacity: 0.8;
 }
 body.dark #author {
-  color: #ccc;
+  color: #fff;
 }
 
 /* button style */
