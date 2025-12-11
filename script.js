@@ -14,7 +14,7 @@ const decreaseFontButton = document.getElementById('decreasefont');
 const resetFontButton = document.getElementById('resetfont');
 
 // --- Global State Variables ---
-// let currentCategory = 'science'; // Default category
+let currentCategory = 'science'; // Default category
 let currentQuoteIndex = 0;
 let currentFontSize = 18; // Corresponds to the initial CSS font size
 const FONT_SIZE_STEP = 2; // Pixel step for font increase/decrease
@@ -63,6 +63,69 @@ function selectRandomQuote() {
     }
 }
 
+// --- Event Handlers ---
+
+/**
+ * Handles category change.
+ */
+function handleCategoryChange(event) {
+    currentCategory = event.target.value;
+    // Set index to 0 for the new category
+    currentQuoteIndex = 0;
+    displayQuote();
+}
+
+/**
+ * Handles 'Previous' button click.
+ */
+function handlePreviousClick() {
+    if (currentQuoteIndex > 0) {
+        currentQuoteIndex--;
+        displayQuote();
+    }
+}
+
+/**
+ * Handles 'Next' button click.
+ */
+function handleNextClick() {
+    const quotes = quote[currentCategory];
+    if (currentQuoteIndex < quotes.length - 1) {
+        currentQuoteIndex++;
+        displayQuote();
+    }
+}
+
+/**
+ * Handles 'Copy' button click.
+ */
+function handleCopyClick() {
+    const quoteToCopy = `${quoteTextElement.textContent} ${authorElement.textContent}`;
+    navigator.clipboard.writeText(quoteToCopy).then(() => {
+        alert('Quote copied to clipboard!');
+    }).catch(err => {
+        console.error('Failed to copy text: ', err);
+    });
+}
+
+/**
+ * Handles 'Share' button click (using Web Share API if available).
+ */
+function handleShareClick() {
+    const quoteToShare = `${quoteTextElement.textContent} ${authorElement.textContent}`;
+    
+    // Check for Web Share API support
+    if (navigator.share) {
+        navigator.share({
+            title: 'Quote of the Day',
+            text: quoteToShare,
+        }).catch((error) => console.error('Error sharing', error));
+    } else {
+        // Fallback for browsers that don't support the Web Share API
+        alert(`Share this quote: \n\n${quoteToShare}`);
+    }
+}
+
 /**
  * Toggles dark mode on the body element.
  */
@@ -70,7 +133,10 @@ function handleThemeToggle() {
     document.body.classList.toggle('dark');
 }
 
-
+/**
+ * Adjusts the font size of the quote text.
+ * @param {number} delta - The amount to change the font size by.
+ */
 function adjustFontSize(delta) {
     const newSize = currentFontSize + delta;
     if (newSize >= MIN_FONT_SIZE && newSize <= MAX_FONT_SIZE) {
