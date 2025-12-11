@@ -43,16 +43,6 @@ const quote = {
     {
       text: "Too many people spend money they earned to buy things they don’t want to impress people that they don’t like.",
       author: "Will Rogers",
-    }, 
-      nepali : [
-    {
-      text: "नेपाली हुनुमा गर्व गरौँ, देश बनाउने जिम्मा हाम्रै हो।",
-      author: "अज्ञात",
-    },
-    {
-      text: "सानो प्रयासले पनि ठूलो परिवर्तन ल्याउन सक्छ।",
-      author: "माधव घिमिरे",
-    },
-  ]
+    }
   ],
 };
