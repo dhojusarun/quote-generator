@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quote Generator</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- font awesome -->
+    <link rel="stylesheet" href="/fontawesome-free-6.5.1-web/css/all.min.css" />
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@100;400&family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="header">
+      <h1><span class="highlight">Q</span>uote</h1>
+      <label class="switch">
+        <input type="checkbox" id="toggle-theme" />
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <div class="title">
+      <h1>Welcome to the world of Quotes</h1>
+    </div>
+    <div class="container">
+      <div class="quote-section">
+        <!-- category selection -->
+        <div class="categories">
+          <label for="categories">Categories :</label>
+          <select id="categories">
+            <option value="categories">Select Category</option>
+            <option value="science">Science</option>
+            <option value="computer">Computer</option>
+            <option value="motivational">Motivational</option>
+          </select>
+        </div>
+        <!-- display quotes -->
+        <div id="quote-box">
+          <p>Loading...</p>
+          <p id="author"></p>
+        </div>
+      </div>
+      <div class="button">
+        <!-- buttons for navigation -->
+        <button id="previous">Previous</button>
+        <button id="random">Random</button>
+        <button id="next">Next</button>
+        <br />
+        <br />
+        <!-- buttons for copying and sharing -->
+        <button id="copy-quote" title="Copy Quote">
+          <i class="fa-regular fa-copy"></i>
+        </button>
+        <button id="share-quote" title="Share Quote">
+          <i class="fa-solid fa-share-nodes"></i>
+        </button>
+        <br><br>
+        <!-- font controls -->
+         <div class="font-control">
+    <button id="increasefont">A+</button>
+        <button id="decreasefont">A-</button>
+        <button id="resetfont">Reset</button>
+         </div>
+    
+      </div>
+    </div>
+    <script src = "quote.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
