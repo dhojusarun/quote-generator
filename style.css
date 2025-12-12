@@ -109,6 +109,7 @@ input:checked + .slider:before {
   box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
   font-size: 18px;
    height: 150px;       /* Fixed height */
+   width:fit-content;
    box-sizing: border-box;
       border: 1px solid #ccc;
       overflow-y: auto; /* Scroll if content overflows */
