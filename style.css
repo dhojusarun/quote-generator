@@ -16,7 +16,7 @@ body {
 /* Dark mode */
 body.dark {
   background: #1e1e1e;
-  color: #eaeaea;
+  color: #f5f5f5;
 }
 
 /* header */
@@ -24,19 +24,24 @@ body.dark {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* makes header flexible on small screens */
+  margin-bottom: 25px;
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
 }
 
 .highlight {
-  color: #ff5733;
+  color: #e80e0e;
 }
 
-/* Toggle theme */
+/* theme switch */
 .switch {
   position: relative;
   display: inline-block;
-  width: 55px;
-  height: 24px;
+  width: 52px;
+  height: 28px;
 }
 
 .switch input {
@@ -52,15 +57,15 @@ body.dark {
   right: 0; bottom: 0;
   background-color: #ccc;
   transition: 0.4s;
-  border-radius: 24px;
+  border-radius: 28px;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 18px;
-  width: 18px;
-  left: 4px;
+  height: 22px;
+  width: 22px;
+  left: 3px;
   bottom: 3px;
   background-color: white;
   transition: 0.4s;
@@ -68,146 +73,178 @@ body.dark {
 }
 
 input:checked + .slider {
-  background-color: #ff5733;
+  background-color: #007bff;
 }
 
 input:checked + .slider:before {
-  transform: translateX(29px);
+  transform: translateX(24px);
 }
 
 /* title */
 .title h1 {
+  font-size: 1.8rem;
   text-align: center;
-  margin: 20px 0;
-  font-size: 26px;
+  margin-bottom: 20px;
+  font-family: "IBM Plex Serif", serif;
+  color:#e80e0e;
 }
 
 /* container */
 .container {
-  max-width: 700px;
+  max-width: 900px;
   margin: auto;
   padding: 20px;
-  width: 100%; /* ensures full responsiveness */
 }
 
-/* Category */
+/* category */
 .categories {
   margin-bottom: 20px;
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 .categories select {
-  padding: 8px 10px;
-  font-size: 16px;
-  border-radius: 6px;
+  padding: 10px;
+  border-radius: 8px;
   border: 1px solid #aaa;
-  width: 100%; /* prevent overflow on mobile */
-  max-width: 300px;
-}
-
-/* quote box */
-#quote-box {
-  background: #fff;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
-  font-size: 18px;
-
-  /* FIXED HEIGHT FOR ANY SCREEN */
-  height: 220px;
-  overflow-y: auto; /* scroll content */
-
-  /* DEVICE COMPATIBLE WIDTH */
-  width: 100%;
-  max-width: 100%;
-
-  border: 1px solid #ccc;
-  transition: background 0.3s, color 0.3s;
-}
-
-body.dark #quote-box {
-  background: #2a2a2a;
-  color: #f2f2f2;
-}
-
-#quote-box p {
-  margin: 10px 0;
-}
-
-#author {
-  font-style: italic;
-  text-align: right;
-  color: #000;
-}
-
-body.dark #author {
-  color: #fff;
-}
-
-/* button style */
-.button {
-  text-align: center;
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;             /* Makes buttons wrap on small devices */
-  gap: 10px;
-  justify-content: center;
-}
-
-.button button {
-  padding: 10px 18px;
-  font-size: 16px;
-  border: none;
-  background: #ff5733;
-  color: white;
-  border-radius: 6px;
+  font-size: 1rem;
+  margin-left: 10px;
   cursor: pointer;
+  background: #fff;
   transition: 0.3s;
 }
 
-.button button:hover {
-  background: #e14c2b;
+body.dark .categories select {
+  background: #333;
+  color: #fff;
+  border-color: #555;
 }
 
-.button i {
-  font-size: 17px;
+/* quote display */
+#quote-box {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  height: 220px;
+  overflow-y: auto;
+  transition: 0.3s;
 }
 
-/* Simple small buttons (copy/share) */
+body.dark #quote-box {
+  background: #2e2e2e;
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(255,255,255,0.1);
+}
+
+#quote-box p {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+#author {
+  font-size: 1rem;
+  font-style: italic;
+  color: #555;
+}
+
+body.dark #author {
+  color: #ccc;
+}
+
+/* buttons */
+.button {
+  margin-top: 25px;
+  text-align: center;
+}
+
+button {
+  padding: 12px 22px;
+  margin: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  background: #007bff;
+  color: white;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #005fcc;
+}
+
+body.dark button {
+  background: #005fcc;
+  color: white;
+}
+
+/* Copy / Share icons */
 #copy-quote, #share-quote {
-  width: 45px;
-  height: 40px;
+  padding: 12px 16px;
+  font-size: 1.2rem;
+  background: #28a745;
 }
 
-/* Font size buttons */
-#increasefont, #decreasefont, #resetfont {
-  background: #444;
+#share-quote {
+  background: #ff9800;
 }
 
-body.dark #increasefont,
-body.dark #decreasefont,
-body.dark #resetfont {
-  background: #666;
+#copy-quote:hover {
+  background: #1e7e34;
 }
 
-/* 📱 RESPONSIVE FIXES FOR MOBILE */
-@media (max-width: 480px) {
-  .title h1 {
-    font-size: 22px;
+#share-quote:hover {
+  background: #e68a00;
+}
+
+/* font control */
+.font-control button {
+  background: #6c757d;
+}
+
+.font-control button:hover {
+  background: #545b62;
+}
+
+/* responsive */
+
+/* Phones */
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 1.6rem;
   }
 
-  #quote-box {
-    padding: 18px;        /* smaller padding on mobile */
-    height: 200px;        /* adjust height for small screens */
-    font-size: 16px;
+  .title h1 {
+    font-size: 1.4rem;
+  }
+
+  #quote-box p {
+    font-size: 1.1rem;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
   }
 
   .categories select {
     width: 100%;
+    margin-top: 10px;
   }
+}
 
-  .button button {
-    font-size: 14px;
-    padding: 8px 14px;
+/* Tablets */
+@media (max-width: 900px) {
+  .container {
+    padding: 10px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+  #quote-box {
+    padding: 40px;
+    font-size: 1.3rem;
   }
 }
