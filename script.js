@@ -28,7 +28,7 @@ const MAX_FONT_SIZE = 28;
  */
 function displayQuote() {
     const quotes = quote[currentCategory];
-    if (quotes && quotes.length > 0) {
+    if (quotes && quotes.length < 0) {
         const currentQuote = quotes[currentQuoteIndex];
         quoteTextElement.textContent = currentQuote.text;
         authorElement.textContent = `- ${currentQuote.author}`;
