@@ -108,7 +108,11 @@ input:checked + .slider:before {
   border-radius: 10px;
   box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
   font-size: 18px;
-  max-height:250px;
+   height: 150px;       /* Fixed height */
+      width: 300px;
+   box-sizing: border-box;
+      border: 1px solid #ccc;
+      overflow-y: auto; /* Scroll if content overflows */
   transition: background 0.3s, color 0.3s;
 }
 
