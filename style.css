@@ -24,7 +24,7 @@ body.dark {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* makes header flexible on small screens */
 }
 
 .highlight {
@@ -87,7 +87,7 @@ input:checked + .slider:before {
   max-width: 700px;
   margin: auto;
   padding: 20px;
-  width: 100%;
+  width: 100%; /* ensures full responsiveness */
 }
 
 /* Category */
@@ -101,7 +101,7 @@ input:checked + .slider:before {
   font-size: 16px;
   border-radius: 6px;
   border: 1px solid #aaa;
-  width: 100%;
+  width: 100%; /* prevent overflow on mobile */
   max-width: 300px;
 }
 
@@ -113,9 +113,11 @@ input:checked + .slider:before {
   box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
   font-size: 18px;
 
-  height: 220px;          /* Fixed height */
-  overflow-y: auto;       /* Scroll on overflow */
+  /* FIXED HEIGHT FOR ANY SCREEN */
+  height: 220px;
+  overflow-y: auto; /* scroll content */
 
+  /* DEVICE COMPATIBLE WIDTH */
   width: 100%;
   max-width: 100%;
 
@@ -142,24 +144,16 @@ body.dark #author {
   color: #fff;
 }
 
-/* ---------------- BUTTONS ---------------- */
-
+/* button style */
 .button {
+  text-align: center;
   margin-top: 20px;
   display: flex;
-  flex-direction: column;    /* Stack rows vertically */
-  gap: 15px;                 /* Space between rows */
-}
-
-/* Each row */
-.button .row {
-  display: flex;
-  justify-content: center;
+  flex-wrap: wrap;             /* Makes buttons wrap on small devices */
   gap: 10px;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
-/* Main button style */
 .button button {
   padding: 10px 18px;
   font-size: 16px;
@@ -175,18 +169,17 @@ body.dark #author {
   background: #e14c2b;
 }
 
-/* Icons spacing */
 .button i {
   font-size: 17px;
 }
 
-/* Copy / Share button size */
+/* Simple small buttons (copy/share) */
 #copy-quote, #share-quote {
   width: 45px;
   height: 40px;
 }
 
-/* Font size control buttons */
+/* Font size buttons */
 #increasefont, #decreasefont, #resetfont {
   background: #444;
 }
@@ -197,16 +190,15 @@ body.dark #resetfont {
   background: #666;
 }
 
-/* ---------------- RESPONSIVE ---------------- */
+/* 📱 RESPONSIVE FIXES FOR MOBILE */
 @media (max-width: 480px) {
-
   .title h1 {
     font-size: 22px;
   }
 
   #quote-box {
-    padding: 18px;
-    height: 200px;
+    padding: 18px;        /* smaller padding on mobile */
+    height: 200px;        /* adjust height for small screens */
     font-size: 16px;
   }
 
