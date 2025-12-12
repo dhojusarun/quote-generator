@@ -14,21 +14,32 @@ const decreaseFontButton = document.getElementById('decreasefont');
 const resetFontButton = document.getElementById('resetfont');
 
 // --- Global State Variables ---
-let currentCategory = 'science'; // Default category
+let currentCategory = '';   // EMPTY ON PAGE LOAD
 let currentQuoteIndex = 0;
-let currentFontSize = 18; // Corresponds to the initial CSS font size
-const FONT_SIZE_STEP = 2; // Pixel step for font increase/decrease
+let currentFontSize = 18;
+
+const FONT_SIZE_STEP = 2;
 const MIN_FONT_SIZE = 14;
 const MAX_FONT_SIZE = 28;
 
 // --- Core Functions ---
 
 /**
- * Updates the display with the current quote from the selected category.
+ * Displays quote or shows text if no category selected.
  */
 function displayQuote() {
+    if (!currentCategory) {
+        quoteTextElement.textContent = "Select a category to view quotes.";
+        authorElement.textContent = "";
+        previousButton.disabled = true;
+        nextButton.disabled = true;
+        randomButton.disabled = true;
+        return;
+    }
+
     const quotes = quote[currentCategory];
-    if (quotes && quotes.length < 0) {
+
+    if (quotes && quotes.length > 0) {
         const currentQuote = quotes[currentQuoteIndex];
         quoteTextElement.textContent = currentQuote.text;
         authorElement.textContent = `- ${currentQuote.author}`;
@@ -40,24 +51,28 @@ function displayQuote() {
 }
 
 /**
- * Checks if previous/next buttons should be enabled or disabled.
+ * Updates next/previous buttons based on quote index
  */
 function updateNavigationButtons() {
     const quotes = quote[currentCategory];
     previousButton.disabled = currentQuoteIndex === 0;
     nextButton.disabled = currentQuoteIndex === quotes.length - 1;
+    randomButton.disabled = quotes.length <= 1;
 }
 
 /**
- * Selects a random quote within the current category.
+ * Selects a random quote
  */
 function selectRandomQuote() {
+    if (!currentCategory) return;
     const quotes = quote[currentCategory];
+
     if (quotes.length > 0) {
         let randomIndex;
         do {
             randomIndex = Math.floor(Math.random() * quotes.length);
-        } while (randomIndex === currentQuoteIndex && quotes.length > 1); // Ensure a new quote is picked if possible
+        } while (randomIndex === currentQuoteIndex && quotes.length > 1);
+
         currentQuoteIndex = randomIndex;
         displayQuote();
     }
@@ -65,19 +80,12 @@ function selectRandomQuote() {
 
 // --- Event Handlers ---
 
-/**
- * Handles category change.
- */
 function handleCategoryChange(event) {
     currentCategory = event.target.value;
-    // Set index to 0 for the new category
     currentQuoteIndex = 0;
     displayQuote();
 }
 
-/**
- * Handles 'Previous' button click.
- */
 function handlePreviousClick() {
     if (currentQuoteIndex > 0) {
         currentQuoteIndex--;
@@ -85,9 +93,6 @@ function handlePreviousClick() {
     }
 }
 
-/**
- * Handles 'Next' button click.
- */
 function handleNextClick() {
     const quotes = quote[currentCategory];
     if (currentQuoteIndex < quotes.length - 1) {
@@ -96,47 +101,28 @@ function handleNextClick() {
     }
 }
 
-/**
- * Handles 'Copy' button click.
- */
 function handleCopyClick() {
     const quoteToCopy = `${quoteTextElement.textContent} ${authorElement.textContent}`;
-    navigator.clipboard.writeText(quoteToCopy).then(() => {
-        alert('Quote copied to clipboard!');
-    }).catch(err => {
-        console.error('Failed to copy text: ', err);
-    });
+    navigator.clipboard.writeText(quoteToCopy)
+        .then(() => alert('Quote copied to clipboard!'));
 }
 
-/**
- * Handles 'Share' button click (using Web Share API if available).
- */
 function handleShareClick() {
     const quoteToShare = `${quoteTextElement.textContent} ${authorElement.textContent}`;
-    
-    // Check for Web Share API support
     if (navigator.share) {
         navigator.share({
             title: 'Quote of the Day',
             text: quoteToShare,
-        }).catch((error) => console.error('Error sharing', error));
+        });
     } else {
-        // Fallback for browsers that don't support the Web Share API
-        alert(`Share this quote: \n\n${quoteToShare}`);
+        alert(`Share this quote:\n\n${quoteToShare}`);
     }
 }
 
-/**
- * Toggles dark mode on the body element.
- */
 function handleThemeToggle() {
     document.body.classList.toggle('dark');
 }
 
-/**
- * Adjusts the font size of the quote text.
- * @param {number} delta - The amount to change the font size by.
- */
 function adjustFontSize(delta) {
     const newSize = currentFontSize + delta;
     if (newSize >= MIN_FONT_SIZE && newSize <= MAX_FONT_SIZE) {
@@ -145,15 +131,12 @@ function adjustFontSize(delta) {
     }
 }
 
-/**
- * Resets the font size to the initial default.
- */
 function resetFontSize() {
-    currentFontSize = 18; // Matches the initial CSS style
-    quoteTextElement.style.fontSize = ''; // Removes inline style to revert to CSS
+    currentFontSize = 18;
+    quoteTextElement.style.fontSize = '';
 }
 
-// --- Event Listeners Initialization ---
+// --- Event Listeners ---
 categorySelect.addEventListener('change', handleCategoryChange);
 previousButton.addEventListener('click', handlePreviousClick);
 nextButton.addEventListener('click', handleNextClick);
@@ -166,13 +149,5 @@ increaseFontButton.addEventListener('click', () => adjustFontSize(FONT_SIZE_STEP
 decreaseFontButton.addEventListener('click', () => adjustFontSize(-FONT_SIZE_STEP));
 resetFontButton.addEventListener('click', resetFontSize);
 
-
-// --- Initial Setup ---
-
-// Check if a category is pre-selected and update the state
-if (categorySelect.value && categorySelect.value !== 'categories') {
-    currentCategory = categorySelect.value;
-}
-
-// Load the first quote on page load
-displayQuote();
+// --- Initial Page State ---
+displayQuote();   // Show "Select a category..." on page load
