@@ -191,13 +191,8 @@ body.dark button {
 #share-quote {
   background: #e80e0e;
 }
-
-#copy-quote:hover {
+#copy-quote:hover, #share-quote:hover {
   background: #ffa733;
-}
-
-#share-quote:hover {
-  background: #ffa733   ;
 }
 
 /* font control */
