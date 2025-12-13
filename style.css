@@ -173,11 +173,11 @@ button {
 }
 
 button:hover {
-  background: #005fcc;
+  background: #ffa733   ;
 }
 
 body.dark button {
-  background: #005fcc;
+  background: #ffa733   ;
   color: white;
 }
 
@@ -185,19 +185,19 @@ body.dark button {
 #copy-quote, #share-quote {
   padding: 12px 16px;
   font-size: 1.2rem;
-  background: #007bff;
+  background: #e80e0e;
 }
 
 #share-quote {
-  background: #007bff;
+  background: #e80e0e;
 }
 
 #copy-quote:hover {
-  background: #007bff;
+  background: #e80e0e;
 }
 
 #share-quote:hover {
-  background: #007bff;
+  background: #ffa733   ;
 }
 
 /* font control */
@@ -206,7 +206,7 @@ body.dark button {
 }
 
 .font-control button:hover {
-  background: #545b62;
+  background: #ffa733   ;
 }
 
 /* responsive */
